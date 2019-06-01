@@ -1,0 +1,997 @@
+
+R version 3.5.0 (2018-04-23) -- "Joy in Playing"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R是自由软件，不带任何担保。
+在某些条件下你可以将其自由散布。
+用'license()'或'licence()'来看散布的详细条件。
+
+R是个合作计划，有许多人为之做出了贡献.
+用'contributors()'来看合作者的详细情况
+用'citation()'会告诉你如何在出版物中正确地引用R或R程序包。
+
+用'demo()'来看一些示范程序，用'help()'来阅读在线帮助文件，或
+用'help.start()'通过HTML浏览器来看帮助文件。
+用'q()'退出R.
+
+[R.app GUI 1.70 (7521) x86_64-apple-darwin15.6.0]
+
+[Workspace restored from /Users/MLS/.RData]
+[History restored from /Users/MLS/.Rapp.history]
+
+> Sys.setlocale("LC_ALL","zh_CN.utf-8")
+[1] "zh_CN.utf-8/zh_CN.utf-8/zh_CN.utf-8/C/zh_CN.utf-8/zh_CN.UTF-8"
+> data1<-read.csv('/Users/MLS/desktop/rs/stt/example/ch2/22_1.csv')
+> data1
+    社区 性别 态度
+1  A社区   男 反对
+2  B社区   女 反对
+3  D社区   女 反对
+4  C社区   男 反对
+5  A社区   男 赞成
+6  D社区   女 反对
+7  B社区   男 赞成
+8  A社区   女 反对
+9  C社区   男 赞成
+10 D社区   男 赞成
+11 A社区   女 反对
+12 C社区   男 反对
+13 A社区   男 赞成
+14 B社区   男 反对
+15 D社区   女 赞成
+16 B社区   男 反对
+17 C社区   女 反对
+18 A社区   女 赞成
+19 B社区   女 赞成
+20 D社区   男 赞成
+21 A社区   女 反对
+22 D社区   女 赞成
+23 C社区   男 赞成
+24 A社区   女 反对
+25 B社区   男 赞成
+26 A社区   女 反对
+27 C社区   女 赞成
+28 D社区   女 赞成
+29 C社区   男 反对
+30 D社区   女 赞成
+31 B社区   女 赞成
+32 A社区   女 反对
+33 C社区   男 赞成
+34 B社区   男 赞成
+35 B社区   女 赞成
+36 A社区   男 反对
+37 B社区   男 赞成
+38 A社区   女 赞成
+39 C社区   女 赞成
+40 A社区   男 赞成
+41 B社区   女 反对
+42 D社区   女 赞成
+43 A社区   男 反对
+44 C社区   男 赞成
+45 A社区   男 赞成
+46 A社区   女 赞成
+47 C社区   男 反对
+48 D社区   男 反对
+49 A社区   女 赞成
+50 C社区   男 反对
+51 C社区   男 赞成
+52 A社区   女 赞成
+53 C社区   女 赞成
+54 B社区   男 赞成
+55 C社区   女 赞成
+56 A社区   女 反对
+57 B社区   女 赞成
+58 D社区   男 反对
+59 A社区   男 赞成
+60 B社区   男 赞成
+61 D社区   女 反对
+62 A社区   女 赞成
+63 D社区   女 反对
+64 C社区   女 赞成
+65 D社区   女 赞成
+66 C社区   男 赞成
+67 A社区   女 赞成
+68 B社区   男 反对
+69 A社区   女 反对
+70 C社区   男 赞成
+71 A社区   女 赞成
+72 A社区   男 反对
+73 C社区   女 赞成
+74 D社区   女 赞成
+75 B社区   女 赞成
+76 A社区   女 反对
+77 C社区   男 赞成
+78 B社区   男 赞成
+79 A社区   女 赞成
+80 C社区   女 反对
+> mosaicplot(~性别+社区+态度, data=data1, color=2:3, main="")
+> par(family="SimSun")
+> mosaicplot(~性别+社区+态度, data=data1, color=2:3, main="")
+> par(mfcol=c(1,2), cex=0.6, family="SimSun")
+> mytable<-table(data1$态度, data1$社区)
+> barplot(mytable, xlab="社区", ylab="频数", ylim=c(0,16),col=c("red", "blue"),legent=rownames(mytable), args.legend=list(x=12), beside=TRUE, main=“(a)社区条形图”,family=‘SimSun’)
+> 
+> ;
+错误: 意外的';' in ";"
+> barplot(mytable, xlab="社区", ylab="频数", ylim=c(0,30),col=c("green", "blue"),legent=rownames(mytable), args.legend=list(x=4.8), main=“(b)社区 堆叠条形图”)
+> mytable<-table(data1$态度, data1$社区)
+> mytable 
+      
+       A社区 B社区 C社区 D社区
+  反对    13     5     7     6
+  赞成    14    12    14     9
+> par(mfcol=c(1,2), cex=0.6, family="SimSun")
+> barplot(mytable, xlab="社区", ylab="频数", ylim=c(0,16),col=c("red", "blue"),legent=rownames(mytable), args.legend=list(x=12), beside=TRUE, main=“(a)社区条形图”,family=‘SimSun’)
+> 
+> par(mfcol=c(2,2), cex=0.6, family="SimSun")
+> barplot(mytable, xlab="社区", ylab="频数", ylim=c(0,16),col=c("red", "blue"),legent=rownames(mytable), args.legend=list(x=12), beside=TRUE, main=“(a)社区条形图”,family=‘SimSun’)
+> data1
+    社区 性别 态度
+1  A社区   男 反对
+2  B社区   女 反对
+3  D社区   女 反对
+4  C社区   男 反对
+5  A社区   男 赞成
+6  D社区   女 反对
+7  B社区   男 赞成
+8  A社区   女 反对
+9  C社区   男 赞成
+10 D社区   男 赞成
+11 A社区   女 反对
+12 C社区   男 反对
+13 A社区   男 赞成
+14 B社区   男 反对
+15 D社区   女 赞成
+16 B社区   男 反对
+17 C社区   女 反对
+18 A社区   女 赞成
+19 B社区   女 赞成
+20 D社区   男 赞成
+21 A社区   女 反对
+22 D社区   女 赞成
+23 C社区   男 赞成
+24 A社区   女 反对
+25 B社区   男 赞成
+26 A社区   女 反对
+27 C社区   女 赞成
+28 D社区   女 赞成
+29 C社区   男 反对
+30 D社区   女 赞成
+31 B社区   女 赞成
+32 A社区   女 反对
+33 C社区   男 赞成
+34 B社区   男 赞成
+35 B社区   女 赞成
+36 A社区   男 反对
+37 B社区   男 赞成
+38 A社区   女 赞成
+39 C社区   女 赞成
+40 A社区   男 赞成
+41 B社区   女 反对
+42 D社区   女 赞成
+43 A社区   男 反对
+44 C社区   男 赞成
+45 A社区   男 赞成
+46 A社区   女 赞成
+47 C社区   男 反对
+48 D社区   男 反对
+49 A社区   女 赞成
+50 C社区   男 反对
+51 C社区   男 赞成
+52 A社区   女 赞成
+53 C社区   女 赞成
+54 B社区   男 赞成
+55 C社区   女 赞成
+56 A社区   女 反对
+57 B社区   女 赞成
+58 D社区   男 反对
+59 A社区   男 赞成
+60 B社区   男 赞成
+61 D社区   女 反对
+62 A社区   女 赞成
+63 D社区   女 反对
+64 C社区   女 赞成
+65 D社区   女 赞成
+66 C社区   男 赞成
+67 A社区   女 赞成
+68 B社区   男 反对
+69 A社区   女 反对
+70 C社区   男 赞成
+71 A社区   女 赞成
+72 A社区   男 反对
+73 C社区   女 赞成
+74 D社区   女 赞成
+75 B社区   女 赞成
+76 A社区   女 反对
+77 C社区   男 赞成
+78 B社区   男 赞成
+79 A社区   女 赞成
+80 C社区   女 反对
+> clear
+错误: 找不到对象'clear'
+> count1<-table(data1$社区)
+> count1
+
+A社区 B社区 C社区 D社区 
+   27    17    21    15 
+> name<-names(count1)
+> name
+[1] "A社区" "B社区" "C社区" "D社区"
+> precent<-prod.table(count1)*100
+Error in prod.table(count1) : 没有"prod.table"这个函数
+> precent<-prop.table(count1)*100
+> label<-paste(name, " ", percent, "%", sep="")
+Error in paste(name, " ", percent, "%", sep = "") : 找不到对象'percent'
+> label<-paste(name, " ", precent, "%", sep="")
+> par(pin=c(3,3),mai=c(0.1,0.4,0.1,0.4), cex=0.8)
+> pie(count1,labels=label,init.angle=90)
+> pie(count1,labels=label,init.angle=90,family="SimSun")
+> library(plotrix)
+Error in library(plotrix) : 不存在叫‘plotrix’这个名字的程辑包
+> install.packages("plotrix",repos="http://mirrors.ustc.edu.cn/CRAN/")
+试开URL’http://mirrors.ustc.edu.cn/CRAN/bin/macosx/el-capitan/contrib/3.5/plotrix_3.7-4.tgz'
+Content type 'application/octet-stream' length 1055859 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+
+下载的二进制程序包在
+	/var/folders/nm/64dxl10s76x2c_xy9qf5zj2c0000gn/T//RtmpwuwvS6/downloaded_packages里
+> library(plotrix)
+> pie3D(count1,labels=label,explode=0.1,labelcex=0.7,family="SimSun")
+> par(pin=c(3,3),mai=c(0.1,0.4,0.1,0.4), cex=0.8, family="SimSun")
+> pie3D(count1,labels=label,explode=0.1,labelcex=0.7,family="SimSun")
+> fan.plot(count1, abels=label, ticks=200, col=c(1:5))
+Error in plot.window(...) : 'xlim'值不能是无限的
+此外: Warning message:
+In max(nchar(labels)) : max里所有的参数都不存在；回覆-Inf
+> fan.plot(count1, labels=label, ticks=200, col=c(1:5))
+
+> 
+> par(pin=c(3,3),mai=c(0.1,0.4,0.1,0.4), cex=0.8, family="SimSun")
+> fan.plot(count1, labels=label, ticks=200, col=c(4:9))
+> example2_2 <-read.csv('/Users/MLS/desktop/rs/stt/example/ch2/22_2.csv')
+> example2_2
+    销售额
+1      272
+2      181
+3      225
+4      199
+5      188
+6      240
+7      191
+8      204
+9      192
+10     212
+11     194
+12     241
+13     197
+14     236
+15     198
+16     196
+17     199
+18     200
+19     172
+20     234
+21     161
+22     254
+23     171
+24     203
+25     225
+26     172
+27     252
+28     187
+29     216
+30     243
+31     246
+32     207
+33     243
+34     167
+35     203
+36     224
+37     183
+38     195
+39     196
+40     239
+41     196
+42     198
+43     208
+44     199
+45     252
+46     200
+47     238
+48     200
+49     200
+50     222
+51     201
+52     224
+53     202
+54     193
+55     203
+56     261
+57     203
+58     218
+59     235
+60     208
+61     217
+62     253
+63     206
+64     248
+65     181
+66     207
+67     172
+68     207
+69     216
+70     205
+71     209
+72     210
+73     210
+74     205
+75     212
+76     218
+77     217
+78     214
+79     206
+80     215
+81     265
+82     215
+83     233
+84     216
+85     205
+86     217
+87     237
+88     217
+89     218
+90     203
+91     219
+92     207
+93     222
+94     218
+95     226
+96     223
+97     191
+98     224
+99     204
+100    224
+101    188
+102    225
+103    222
+104    209
+105    226
+106    228
+107    229
+108    230
+109    186
+110    238
+111    216
+112    234
+113    199
+114    235
+115    220
+116    238
+117    196
+118    233
+119    206
+120    243
+> par(mfcol=c(2,2), cex=0.7, family='SimSun')
+> hist(example2_2,xlab="销售额", ylab="频数", main="(a)普通")
+Error in hist.default(example2_2, xlab = "销售额", ylab = "频数",  : 
+  'x'必需为数值
+> hist(example2_2$销售额,xlab="销售额", ylab="频数", main="(a)普通")
+> hist(example2_2$销售额,freq=FALSE, breaks=20, xlab="销售额", ylab="频率", main="(c)增加轴线须线和密度线")
+> curve(dnorm(x,mean(example2_2), sd(example2_2)), add=T, col="red")
+Error in is.data.frame(x) : (串列)对象不能强制改变成'double'种类
+此外: Warning message:
+In mean.default(example2_2) :
+  argument is not numeric or logical: returning NA
+> 
+> curve(dnorm(x,mean(example2_2$销售额), sd(example2_2$销售额)), add=T, col="red")
+> hist(example2_2$销售额,freq=FALSE, breaks=20, xlab="销售额", ylab="频率", main="(c)增加轴线须线和密度线")
+> curve(dnorm(x,mean(example2_2$销售额), sd(example2_2$销售额)), add=T, col="red")
+> rug(example2_2$销售额)
+> rug(jitter(example2_2$销售额))
+> rug(jitter(example2_2$销售额))
+> rug(jitter(example2_2$销售额))
+> stem(example2_2$销售额)
+
+  The decimal point is 1 digit(s) to the right of the |
+
+  16 | 17
+  17 | 1222
+  18 | 1136788
+  19 | 11234566667889999
+  20 | 000012333334455566677778899
+  21 | 00224556666777788889
+  22 | 0222344445556689
+  23 | 0334455678889
+  24 | 0133368
+  25 | 2234
+  26 | 15
+  27 | 2
+
+> boxplot(example2_2$销售额, col="lightblue", cex.axis=0.5)
+> boxplot(example2_3, col="lightblue", cex.axis=0.5)
+Error in boxplot(example2_3, col = "lightblue", cex.axis = 0.5) : 
+  找不到对象'example2_3'
+> boxplot(example2_2$销售额, col="lightblue", cex.axis=0.5)
+> example2_3 <-read.csv('/Users/MLS/desktop/rs/stt/example/ch2/22_3.csv')
+> example2_3
+   亚历山大.彼得里夫利 拉尔夫.许曼 克里斯蒂安.赖茨 列昂尼德.叶基莫夫 基思.桑德森 罗曼.邦达鲁克
+1                 10.1         8.4             9.9               8.8         9.7           9.8
+2                  8.4         9.6            10.7              10.7        10.5           9.2
+3                 10.3        10.2             9.0               9.7         9.0          10.3
+4                 10.2        10.8            10.5               9.6         9.6           7.2
+5                 10.4        10.5            10.3              10.0         9.0           9.9
+6                  9.6        10.3            10.6              10.2         9.9          10.5
+7                 10.1         9.8            10.0              10.1         9.2          10.4
+8                 10.0        10.9             7.9              10.2         9.7          10.9
+9                  9.9        10.3            10.7               9.4         9.9          10.5
+10                10.2        10.0            10.4              10.3         8.1          10.3
+11                10.8         9.5             9.5              10.4         9.3          10.2
+12                10.0        10.2             9.9               9.8        10.1          10.0
+13                10.3        10.7            10.1               8.9        10.5           9.8
+14                10.5        10.1             9.9              10.0        10.2           9.2
+15                 9.6        10.3            10.3              10.0        10.0           8.3
+16                 9.8         9.7             9.0               9.1         9.9           9.0
+17                10.4         9.3             9.8               9.5         9.5           9.4
+18                10.3        10.3            10.8               9.8         9.7           9.8
+19                 9.1        10.0            10.3              10.7         9.9          10.4
+20                10.2         9.6            10.7              10.0         9.9           9.6
+> boxplot(example2_3, col="ligthblue",xlab="运动员", ylab="射击环数", cex.lab=0.8, cex.axis=0.6)
+Error in xypolygon(xx, yy, lty = "blank", col = boxfill[i]) : 
+  'ligthblue'颜色名字不对
+> boxplot(example2_3, col="lightblue",xlab="运动员", ylab="射击环数", cex.lab=0.8, cex.axis=0.6)
+> boxplot(example2_3, col="lightblue",xlab="运动员", ylab="射击环数", cex.lab=0.8, cex.axis=0.6, family="SumSin")
+> par(mfcol=c(1,1), cex=0.7, family='SimSun')
+> boxplot(example2_3, col="lightblue",xlab="运动员", ylab="射击环数", cex.lab=0.8, cex.axis=0.6, family="SumSin")
+> 
+> library(vioplot)
+Error in library(vioplot) : 不存在叫‘vioplot’这个名字的程辑包
+> install.packages("vioplot",repos="http://mirrors.ustc.edu.cn/CRAN/")
+还安装相依关系‘sm’
+
+
+  有二进制版本的，但源代码版本是后来的:
+    binary  source needs_compilation
+sm 2.2-5.4 2.2-5.6              TRUE
+
+Do you want to install from sources the package which needs compilation? (Yes/no/cancel) yes
+试开URL’http://mirrors.ustc.edu.cn/CRAN/bin/macosx/el-capitan/contrib/3.5/vioplot_0.2.tgz'
+Content type 'application/octet-stream' length 15294 bytes (14 KB)
+==================================================
+downloaded 14 KB
+
+
+下载的二进制程序包在
+	/var/folders/nm/64dxl10s76x2c_xy9qf5zj2c0000gn/T//RtmpwuwvS6/downloaded_packages里
+安装源码包‘sm’
+
+试开URL’http://mirrors.ustc.edu.cn/CRAN/src/contrib/sm_2.2-5.6.tar.gz'
+Content type 'application/gzip' length 256355 bytes (250 KB)
+==================================================
+downloaded 250 KB
+
+* installing *source* package ‘sm’ ...
+** 成功将‘sm’程序包解包并MD5和检查
+** libs
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+ERROR: compilation failed for package ‘sm’
+* removing ‘/Library/Frameworks/R.framework/Versions/3.5/Resources/library/sm’
+
+下载的程序包在
+	‘/private/var/folders/nm/64dxl10s76x2c_xy9qf5zj2c0000gn/T/RtmpwuwvS6/downloaded_packages’里
+Warning message:
+In install.packages("vioplot", repos = "http://mirrors.ustc.edu.cn/CRAN/") :
+  安装程序包‘sm’时退出狀態的值不是0
+> library(vioplot)
+错误: 找不到‘vioplot’所需要的程辑包‘sm’
+> install.packages("sm",repos="http://mirrors.ustc.edu.cn/CRAN/")
+
+  有二进制版本的，但源代码版本是后来的:
+    binary  source needs_compilation
+sm 2.2-5.4 2.2-5.6              TRUE
+
+Do you want to install from sources the package which needs compilation? (Yes/no/cancel) yes
+安装源码包‘sm’
+
+试开URL’http://mirrors.ustc.edu.cn/CRAN/src/contrib/sm_2.2-5.6.tar.gz'
+Content type 'application/gzip' length 256355 bytes (250 KB)
+==================================================
+downloaded 250 KB
+
+* installing *source* package ‘sm’ ...
+** 成功将‘sm’程序包解包并MD5和检查
+** libs
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+ERROR: compilation failed for package ‘sm’
+* removing ‘/Library/Frameworks/R.framework/Versions/3.5/Resources/library/sm’
+
+下载的程序包在
+	‘/private/var/folders/nm/64dxl10s76x2c_xy9qf5zj2c0000gn/T/RtmpwuwvS6/downloaded_packages’里
+Warning message:
+In install.packages("sm", repos = "http://mirrors.ustc.edu.cn/CRAN/") :
+  安装程序包‘sm’时退出狀態的值不是0
+> install.packages("sm",repos="http://mirrors.ustc.edu.cn/CRAN/")
+
+  有二进制版本的，但源代码版本是后来的:
+    binary  source needs_compilation
+sm 2.2-5.4 2.2-5.6              TRUE
+
+Do you want to install from sources the package which needs compilation? (Yes/no/cancel) 
+安装源码包‘sm’
+
+试开URL’http://mirrors.ustc.edu.cn/CRAN/src/contrib/sm_2.2-5.6.tar.gz'
+Content type 'application/gzip' length 256355 bytes (250 KB)
+==================================================
+downloaded 250 KB
+
+* installing *source* package ‘sm’ ...
+** 成功将‘sm’程序包解包并MD5和检查
+** libs
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+ERROR: compilation failed for package ‘sm’
+* removing ‘/Library/Frameworks/R.framework/Versions/3.5/Resources/library/sm’
+
+下载的程序包在
+	‘/private/var/folders/nm/64dxl10s76x2c_xy9qf5zj2c0000gn/T/RtmpwuwvS6/downloaded_packages’里
+Warning message:
+In install.packages("sm", repos = "http://mirrors.ustc.edu.cn/CRAN/") :
+  安装程序包‘sm’时退出狀態的值不是0
+> nstall.packages("sm")
+Error in nstall.packages("sm") : 没有"nstall.packages"这个函数
+> install.packages("sm")
+--- 在此連線階段时请选用CRAN的鏡子 ---
+Warning: 无法在貯藏處https://mirrors.eliteu.cn/CRAN/src/contrib中读写索引:
+  无法打开URL'https://mirrors.eliteu.cn/CRAN/src/contrib/PACKAGES'
+Warning message:
+package ‘sm’ is not available (for R version 3.5.0) 
+> library(vioplot)
+错误: 找不到‘vioplot’所需要的程辑包‘sm’
+> vioplot()
+Error in vioplot() : 没有"vioplot"这个函数
+> example3_2<-cblind(example3_2, id=factor(1:20))
+Error in cblind(example3_2, id = factor(1:20)) : 没有"cblind"这个函数
+> example3_2<-cblid(example3_2, id=factor(1:20))
+Error in cblid(example3_2, id = factor(1:20)) : 没有"cblid"这个函数
+> example3_2<-cbind(example3_2, id=factor(1:20))
+Error in cbind(example3_2, id = factor(1:20)) : 找不到对象'example3_2'
+> example2_3<-cbind(example2_3, id=factor(1:20))
+> library(reshap)
+Error in library(reshap) : 不存在叫‘reshap’这个名字的程辑包
+> install.packages("reshap",repos="http://mirrors.ustc.edu.cn/CRAN/")
+Warning message:
+package ‘reshap’ is not available (for R version 3.5.0) 
+
+> 
+> load('/Users/MLS/desktop/rs/stt/example/ch2/example2_3_1.RData')
+> example2_3_1
+    id                                                  \xd4\u02f6\xafԱ \xc9\xe4\xbb\xf7\xbb\xb7\xca\xfd
+1    1 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.1
+2    2 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                              8.4
+3    3 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.3
+4    4 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.2
+5    5 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.4
+6    6 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                              9.6
+7    7 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.1
+8    8 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.0
+9    9 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                              9.9
+10  10 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.2
+11  11 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.8
+12  12 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.0
+13  13 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.3
+14  14 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.5
+15  15 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                              9.6
+16  16 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                              9.8
+17  17 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.4
+18  18 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.3
+19  19 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                              9.1
+20  20 \xd1\xc7\xc0\xfaɽ\xb4\xf3.\xb1\u02f5\xc3\xc0\xef\xb7\xf2\xc0\xfb                             10.2
+21   1                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              8.4
+22   2                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              9.6
+23   3                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.2
+24   4                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.8
+25   5                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.5
+26   6                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.3
+27   7                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              9.8
+28   8                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.9
+29   9                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.3
+30  10                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.0
+31  11                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              9.5
+32  12                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.2
+33  13                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.7
+34  14                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.1
+35  15                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.3
+36  16                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              9.7
+37  17                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              9.3
+38  18                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.3
+39  19                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                             10.0
+40  20                        \xc0\xad\xb6\xfb\xb7\xf2.\xd0\xed\xc2\xfc                              9.6
+41   1                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.9
+42   2                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.7
+43   3                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.0
+44   4                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.5
+45   5                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.3
+46   6                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.6
+47   7                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.0
+48   8                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              7.9
+49   9                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.7
+50  10                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.4
+51  11                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.5
+52  12                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.9
+53  13                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.1
+54  14                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.9
+55  15                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.3
+56  16                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.0
+57  17                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                              9.8
+58  18                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.8
+59  19                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.3
+60  20                  \xbf\xcb\xc0\xef\u02f9\xb5ٰ\xb2.\xc0\xb5\xb4\xc4                             10.7
+61   1                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              8.8
+62   2                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.7
+63   3                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.7
+64   4                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.6
+65   5                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.0
+66   6                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.2
+67   7                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.1
+68   8                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.2
+69   9                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.4
+70  10                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.3
+71  11                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.4
+72  12                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.8
+73  13                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              8.9
+74  14                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.0
+75  15                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.0
+76  16                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.1
+77  17                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.5
+78  18                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                              9.8
+79  19                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.7
+80  20                    \xc1а\xba\xc4\xe1\xb5\xc2.Ҷ\xbb\xf9Ī\xb7\xf2                             10.0
+81   1                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.7
+82   2                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                             10.5
+83   3                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.0
+84   4                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.6
+85   5                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.0
+86   6                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.9
+87   7                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.2
+88   8                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.7
+89   9                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.9
+90  10                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              8.1
+91  11                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.3
+92  12                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                             10.1
+93  13                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                             10.5
+94  14                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                             10.2
+95  15                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                             10.0
+96  16                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.9
+97  17                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.5
+98  18                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.7
+99  19                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.9
+100 20                                        \xbb\xf9\u02fc.ɣ\xb5\xc2ɭ                              9.9
+101  1                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.8
+102  2                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.2
+103  3                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.3
+104  4                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              7.2
+105  5                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.9
+106  6                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.5
+107  7                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.4
+108  8                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.9
+109  9                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.5
+110 10                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.3
+111 11                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.2
+112 12                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.0
+113 13                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.8
+114 14                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.2
+115 15                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              8.3
+116 16                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.0
+117 17                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.4
+118 18                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.8
+119 19                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                             10.4
+120 20                      \xc2\xde\xc2\xfc.\xb0\xee\xb4\xef³\xbf\xcb                              9.6
+> write.table(example3_2_1,'/Users/MLS/desktop/rs/stt/example/ch9/3_2_1.csv',row.names=FALSE,col.names=TRUE,sep=",")
+Error in is.data.frame(x) : 找不到对象'example3_2_1'
+> write.table(example2_3_1,'/Users/MLS/desktop/rs/stt/example/ch9/2_3_1.csv',row.names=FALSE,col.names=TRUE,sep=",")
+> write.table(example2_3_1,'/Users/MLS/desktop/rs/stt/example/ch2/2_3_1.csv',row.names=FALSE,col.names=TRUE,sep=",")
+> example2_3_1 <- read.csv('/Users/MLS/desktop/rs/stt/example/ch2/231.csv')
+> example2_3_1
+    id              运动员 射击环数
+1    1 亚历山大.彼得里夫利     10.1
+2    2 亚历山大.彼得里夫利      8.4
+3    3 亚历山大.彼得里夫利     10.3
+4    4 亚历山大.彼得里夫利     10.2
+5    5 亚历山大.彼得里夫利     10.4
+6    6 亚历山大.彼得里夫利      9.6
+7    7 亚历山大.彼得里夫利     10.1
+8    8 亚历山大.彼得里夫利     10.0
+9    9 亚历山大.彼得里夫利      9.9
+10  10 亚历山大.彼得里夫利     10.2
+11  11 亚历山大.彼得里夫利     10.8
+12  12 亚历山大.彼得里夫利     10.0
+13  13 亚历山大.彼得里夫利     10.3
+14  14 亚历山大.彼得里夫利     10.5
+15  15 亚历山大.彼得里夫利      9.6
+16  16 亚历山大.彼得里夫利      9.8
+17  17 亚历山大.彼得里夫利     10.4
+18  18 亚历山大.彼得里夫利     10.3
+19  19 亚历山大.彼得里夫利      9.1
+20  20 亚历山大.彼得里夫利     10.2
+21   1         拉尔夫.许曼      8.4
+22   2         拉尔夫.许曼      9.6
+23   3         拉尔夫.许曼     10.2
+24   4         拉尔夫.许曼     10.8
+25   5         拉尔夫.许曼     10.5
+26   6         拉尔夫.许曼     10.3
+27   7         拉尔夫.许曼      9.8
+28   8         拉尔夫.许曼     10.9
+29   9         拉尔夫.许曼     10.3
+30  10         拉尔夫.许曼     10.0
+31  11         拉尔夫.许曼      9.5
+32  12         拉尔夫.许曼     10.2
+33  13         拉尔夫.许曼     10.7
+34  14         拉尔夫.许曼     10.1
+35  15         拉尔夫.许曼     10.3
+36  16         拉尔夫.许曼      9.7
+37  17         拉尔夫.许曼      9.3
+38  18         拉尔夫.许曼     10.3
+39  19         拉尔夫.许曼     10.0
+40  20         拉尔夫.许曼      9.6
+41   1     克里斯蒂安.赖茨      9.9
+42   2     克里斯蒂安.赖茨     10.7
+43   3     克里斯蒂安.赖茨      9.0
+44   4     克里斯蒂安.赖茨     10.5
+45   5     克里斯蒂安.赖茨     10.3
+46   6     克里斯蒂安.赖茨     10.6
+47   7     克里斯蒂安.赖茨     10.0
+48   8     克里斯蒂安.赖茨      7.9
+49   9     克里斯蒂安.赖茨     10.7
+50  10     克里斯蒂安.赖茨     10.4
+51  11     克里斯蒂安.赖茨      9.5
+52  12     克里斯蒂安.赖茨      9.9
+53  13     克里斯蒂安.赖茨     10.1
+54  14     克里斯蒂安.赖茨      9.9
+55  15     克里斯蒂安.赖茨     10.3
+56  16     克里斯蒂安.赖茨      9.0
+57  17     克里斯蒂安.赖茨      9.8
+58  18     克里斯蒂安.赖茨     10.8
+59  19     克里斯蒂安.赖茨     10.3
+60  20     克里斯蒂安.赖茨     10.7
+61   1   列昂尼德.叶基莫夫      8.8
+62   2   列昂尼德.叶基莫夫     10.7
+63   3   列昂尼德.叶基莫夫      9.7
+64   4   列昂尼德.叶基莫夫      9.6
+65   5   列昂尼德.叶基莫夫     10.0
+66   6   列昂尼德.叶基莫夫     10.2
+67   7   列昂尼德.叶基莫夫     10.1
+68   8   列昂尼德.叶基莫夫     10.2
+69   9   列昂尼德.叶基莫夫      9.4
+70  10   列昂尼德.叶基莫夫     10.3
+71  11   列昂尼德.叶基莫夫     10.4
+72  12   列昂尼德.叶基莫夫      9.8
+73  13   列昂尼德.叶基莫夫      8.9
+74  14   列昂尼德.叶基莫夫     10.0
+75  15   列昂尼德.叶基莫夫     10.0
+76  16   列昂尼德.叶基莫夫      9.1
+77  17   列昂尼德.叶基莫夫      9.5
+78  18   列昂尼德.叶基莫夫      9.8
+79  19   列昂尼德.叶基莫夫     10.7
+80  20   列昂尼德.叶基莫夫     10.0
+81   1         基思.桑德森      9.7
+82   2         基思.桑德森     10.5
+83   3         基思.桑德森      9.0
+84   4         基思.桑德森      9.6
+85   5         基思.桑德森      9.0
+86   6         基思.桑德森      9.9
+87   7         基思.桑德森      9.2
+88   8         基思.桑德森      9.7
+89   9         基思.桑德森      9.9
+90  10         基思.桑德森      8.1
+91  11         基思.桑德森      9.3
+92  12         基思.桑德森     10.1
+93  13         基思.桑德森     10.5
+94  14         基思.桑德森     10.2
+95  15         基思.桑德森     10.0
+96  16         基思.桑德森      9.9
+97  17         基思.桑德森      9.5
+98  18         基思.桑德森      9.7
+99  19         基思.桑德森      9.9
+100 20         基思.桑德森      9.9
+101  1       罗曼.邦达鲁克      9.8
+102  2       罗曼.邦达鲁克      9.2
+103  3       罗曼.邦达鲁克     10.3
+104  4       罗曼.邦达鲁克      7.2
+105  5       罗曼.邦达鲁克      9.9
+106  6       罗曼.邦达鲁克     10.5
+107  7       罗曼.邦达鲁克     10.4
+108  8       罗曼.邦达鲁克     10.9
+109  9       罗曼.邦达鲁克     10.5
+110 10       罗曼.邦达鲁克     10.3
+111 11       罗曼.邦达鲁克     10.2
+112 12       罗曼.邦达鲁克     10.0
+113 13       罗曼.邦达鲁克      9.8
+114 14       罗曼.邦达鲁克      9.2
+115 15       罗曼.邦达鲁克      8.3
+116 16       罗曼.邦达鲁克      9.0
+117 17       罗曼.邦达鲁克      9.4
+118 18       罗曼.邦达鲁克      9.8
+119 19       罗曼.邦达鲁克     10.4
+120 20       罗曼.邦达鲁克      9.6
+> dotchart(example2_3_1$射击环数, groups=example2_3_1$运动员, xlab="射击环数", pch=20,family="SumSin")
+> dotchart(example2_3_1$射击环数, groups=example2_3_1$运动员, xlab="射击环数", pch=20)
+There were 15 warnings (use warnings() to see them)
+> par(mfcol=c(1,1), cex=0.7, family='SimSun')
+> dotchart(example2_3_1$射击环数, groups=example2_3_1$运动员, xlab="射击环数", pch=20)
+> library(lattice)
+> dotplot(射击环数～运动员, data=example2_3_1, col="green", pch=9)
+> dotplot(射击环数~运动员, data=example2_3_1, col="green", pch=9)
+> par(mfcol=c(1,1), cex=0.7, family='SimSun')
+> dotplot(射击环数~运动员, data=example2_3_1, col="black", pch=9)
+> dotplot(射击环数~运动员, data=example2_3_1, col="black", pch=9, family='SimSun')
+> 
+> ar(mfcol=c(1,1), cex=0.7, family='SimSun')
+Error in ar.yw(x, aic = aic, order.max = order.max, na.action = na.action,  : 
+  缺少参数"x",也没有缺省值
+> par(mfcol=c(1,1), cex=0.7, family='SimSun')
+> dotplot(射击环数~运动员, data=example2_3_1, col="black", pch=9, family='SimSun')
+> par(cex=0.7, family='SimSun')
+> densityplot(~射击环数|运动员, dataexample2_3_1,col="blue",cex=0.5)
+Error in eval(substitute(groups), data, environment(formula)) : 
+  找不到对象'dataexample2_3_1'
+> densityplot(~射击环数|运动员, data=example2_3_1,col="blue",cex=0.5)
+> densityplot(~射击环数|运动员, data=example2_3_1,col="blue",cex=0.5, family='SimSun')
+> 
+> library(sm)
+Error in library(sm) : 不存在叫‘sm’这个名字的程辑包
+> x<-seq(0,25,length=100)
+> y<-4+0.5*x+rnorm(100,0,2)
+> d<-data.frame(x,y)
+> d
+             x         y
+1    0.0000000  2.911616
+2    0.2525253  5.780462
+3    0.5050505  5.509728
+4    0.7575758  6.999655
+5    1.0101010  2.906933
+6    1.2626263  3.041156
+7    1.5151515  5.126998
+8    1.7676768  6.405982
+9    2.0202020  8.190000
+10   2.2727273  2.700038
+11   2.5252525  6.162216
+12   2.7777778  4.643700
+13   3.0303030  6.029337
+14   3.2828283  5.011476
+15   3.5353535  6.940710
+16   3.7878788  2.981511
+17   4.0404040  2.660569
+18   4.2929293  7.629934
+19   4.5454545  6.227527
+20   4.7979798  9.908229
+21   5.0505051  6.471946
+22   5.3030303  5.691333
+23   5.5555556  7.547746
+24   5.8080808  7.721345
+25   6.0606061  7.323621
+26   6.3131313  6.880090
+27   6.5656566  7.264296
+28   6.8181818  8.714583
+29   7.0707071  5.386816
+30   7.3232323  8.031246
+31   7.5757576  9.143953
+32   7.8282828  6.851270
+33   8.0808081  9.063885
+34   8.3333333 10.894497
+35   8.5858586  8.192777
+36   8.8383838  9.308777
+37   9.0909091  8.304572
+38   9.3434343  6.475314
+39   9.5959596 13.268252
+40   9.8484848 12.164506
+41  10.1010101  8.733153
+42  10.3535354  5.490002
+43  10.6060606  9.750492
+44  10.8585859  8.054683
+45  11.1111111  7.498236
+46  11.3636364  9.597846
+47  11.6161616 10.099344
+48  11.8686869 11.728731
+49  12.1212121  9.714942
+50  12.3737374  9.018077
+51  12.6262626 11.730927
+52  12.8787879  8.571078
+53  13.1313131  6.218605
+54  13.3838384 10.589107
+55  13.6363636 10.297674
+56  13.8888889 13.658911
+57  14.1414141  8.449672
+58  14.3939394  9.520436
+59  14.6464646 12.141316
+60  14.8989899 15.772016
+61  15.1515152 11.830918
+62  15.4040404  7.631350
+63  15.6565657 15.118140
+64  15.9090909 12.905813
+65  16.1616162 15.816831
+66  16.4141414 15.035433
+67  16.6666667 15.353326
+68  16.9191919 14.659476
+69  17.1717172 13.730271
+70  17.4242424 11.834739
+71  17.6767677 13.111425
+72  17.9292929 14.492915
+73  18.1818182 11.133561
+74  18.4343434 12.821463
+75  18.6868687 13.192711
+76  18.9393939 12.282640
+77  19.1919192 12.552418
+78  19.4444444 12.730571
+79  19.6969697 14.843192
+80  19.9494949 18.227835
+81  20.2020202 14.757013
+82  20.4545455 15.810895
+83  20.7070707 14.881923
+84  20.9595960 17.249781
+85  21.2121212 10.721917
+86  21.4646465 13.236966
+87  21.7171717 16.412408
+88  21.9696970 12.903272
+89  22.2222222 18.442091
+90  22.4747475 16.989933
+91  22.7272727 12.803295
+92  22.9797980 18.508035
+93  23.2323232 15.769133
+94  23.4848485 11.131239
+95  23.7373737 16.281334
+96  23.9898990 13.653234
+97  24.2424242 15.614776
+98  24.4949495 15.292309
+99  24.7474747 16.731965
+100 25.0000000 14.618371
+> polygon(d[chull(d)], col='pink', lty=3,lwd=2)
+Error in `[.data.frame`(d, chull(d)) : undefined columns selected
+> 
+> plot(d)
+> polygon(d[chull(d),], col='pink', lty=3,lwd=2)
+> points(d)
+> abline(lm(y~x),lwd=2,col=4)
+> abline(v=mean(x),h=mean(y),lty=2,col="gray70")
+> example2_4<-read.csv('/Users/MLS/desktop/rs/stt/example/ch2/2_4.csv')
+Error in file(file, "rt") : 无法打开链结
+此外: Warning message:
+In file(file, "rt") :
+  无法打开文件'/Users/MLS/desktop/rs/stt/example/ch2/2_4.csv': No such file or directory
+> example2_4<-read.csv('/Users/MLS/desktop/rs/stt/example/ch2/22_4.csv')
+> example2_4<-read.csv('/Users/MLS/desktop/rs/stt/example/ch2/22_4.csv')
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> example2_4
+   销售收入 销售网点数 销售人员数 广告费用
+1      4373        186        552      651
+2       281         15        226       42
+3       473         23        237       65
+4      1909         87        405      276
+5       321         19        239       49
+6      2145        104        398      313
+7       341         18        245       53
+8       550         26        253       76
+9      5561        256        655      817
+10      410         20        262       64
+11      649         31        271       90
+12      526         20        285       84
+13     1072         49        329      153
+14      950         38        340      155
+15     1086         44        353      178
+16     1642         75        384      237
+17     1913         88        411      315
+18     2858        144        456      471
+19     3308        141        478      571
+20     5021        230        618      747
+> plot(example2_4, cex=0.6, gap=0.5)
+> plot(example2_4, cex=0.6, gap=0.5, family="SimSun")
+> par(cex=0.7, family='SimSun')
+> plot(example2_4, cex=0.6, gap=0.5, family="SimSun")
+> 

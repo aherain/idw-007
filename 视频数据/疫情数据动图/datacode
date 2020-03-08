@@ -1,0 +1,12 @@
+wuhan <- sqldf("select date, '武汉-确诊', confirmed  as '人数' from data where cityCode=420100 and date>='2020-01-24'
+union all
+select date, '武汉-治愈', cured  as '人数' from data where cityCode=420100 and date>='2020-01-24'
+union all
+select date, '湖北-确诊', confirmed  as '人数' from data where provinceCode=420000 and cityCode='' and confirmed>0 and date>='2020-01-24'
+union all
+select date, '湖北-治愈', cured as '人数' from data where provinceCode=420000 and cityCode='' and cured>0 and date>='2020-01-24'
+union all
+select date, '中国-确诊', confirmed  as '人数' from data where countryCode='CN' and provinceCode=0  and confirmed>0 and date>='2020-01-24'
+union all
+select date, '中国-治愈', cured as '人数' from data where countryCode='CN' and  provinceCode=0  and confirmed>0 and date>='2020-01-24'
+")
